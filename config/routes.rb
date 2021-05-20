@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  resources :colleges
+  root 'colleges#index'
   get '/about', to: 'static_pages#about'
 end
