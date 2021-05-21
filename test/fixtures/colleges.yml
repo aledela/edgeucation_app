@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coll_name: MyString
+  zip_code: MyString
+  cost_att: MyString
+
+two:
+  coll_name: MyString
+  zip_code: MyString
+  cost_att: MyString

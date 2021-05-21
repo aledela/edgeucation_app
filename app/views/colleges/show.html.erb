@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Institutions:</strong>
+  <%= @college.coll_name %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @college.zip_code %>
+</p>
+
+<p>
+  <strong>Cost of Attendance:</strong>
+  <%= @college.cost_att %>
+</p>
+
+<%= link_to 'Edit', edit_college_path(@college) %> |
+<%= link_to 'Back', colleges_path %>

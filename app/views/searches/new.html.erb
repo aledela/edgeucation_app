@@ -1,0 +1,40 @@
+<h1>Advanced Search</h1>
+
+<%= form_with model: @search do |f| %>
+    <%= f.label :By_Insitution_name %>
+    <%= f.text_field :coll_name %>
+
+    <%= f.label :By_zip_code %>
+    <%= f.select :zip_code, options_for_select(@zip_code), include_blank: true %><br>
+
+    <%= f.label :By_cost_of_attendance %>
+    <%= f.select :cost_att, options_for_select(@cost_att), include_blank: true %><br><br>
+
+    <%= f.submit "Search" %>
+<% end %>
+
+<p><%= link_to "Back", '/colleges' %></p>'
+
+
+<!--<p id="notice"><%= notice %></p>-->
+
+<!--<div class="center jumbotron"> -->
+<!--  <h1>Edgeucation</h1>-->
+<!--  <h2>-->
+<!--  This is the home page for the Edgecucation application.-->
+<!--  </h2>-->
+<!--  <h2>-->
+<!--<%= form_with model: @search do |f| %>-->
+<!--    <%= f.label :By_Insitution_name %>-->
+<!--    <%= f.text_field :coll_name %>-->
+
+<!--    <%= f.label :By_zip_code %>-->
+<!--    <%= f.select :zip_code, options_for_select(@zip_code), include_blank: true %><br>-->
+
+<!--    <%= f.label :By_cost_of_attendance %>-->
+<!--    <%= f.select :cost_att, options_for_select(@cost_att), include_blank: true %><br><br>-->
+
+<!--    <%= f.submit "Search" %>-->
+<!--<% end %>-->
+<!--    </h2>-->
+<!--</div>-->
