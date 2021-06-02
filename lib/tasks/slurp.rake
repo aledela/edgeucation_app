@@ -10,9 +10,6 @@ namespace :slurp do
     s.zip_code = row["ZIP"]
     s.cost_att = row["Cost"]
     s.save
-    puts "#{s.coll_name}, #{s.zip_code } saved"
     end
-    f = College.count
-    puts f
   end
 end

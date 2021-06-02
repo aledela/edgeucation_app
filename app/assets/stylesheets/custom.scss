@@ -46,14 +46,15 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #885454;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
+  padding-bottom: 2px;
   font-weight: bold;
+  background-color: #222;
   &:hover {
-  color: #fff;
-  text-decoration: none;
+  transform: scale(1.03);
+  background-color: #222;
   }
 }
 
