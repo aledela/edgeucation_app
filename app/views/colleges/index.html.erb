@@ -1,44 +1,44 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
-<div class="center jumbotron"> 
-  <h1>Edgeucation</h1>
-  <h2>
-  This is the home page for the Edgecucation application.
-  </h2>
-  <h2>
-    <%= form_with(url: '/colleges', method: 'get', local: true) do %>
-    <%= text_field_tag(:search) %>
-    <%= submit_tag("Search") %>
-    <% end %>
-  </h2>
-  <h2>
-    <%= link_to "Advanced Search", new_search_path %>
-  </h2>
-  <h2>Colleges</h2>
-<center><table>
-  <thead>
-    <tr>
-      <th>Institutions</th>
-      <th>Zip code</th>
-      <th>Cost of Attendence</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!--<div class="center jumbotron"> -->
+<!--  <h1>Edgeucation</h1>-->
+<!--  <h2>-->
+<!--  This is the home page for the Edgecucation application.-->
+<!--  </h2>-->
+<!--  <h2>-->
+<!--    <%= form_with(url: '/colleges', method: 'get', local: true) do %>-->
+<!--    <%= text_field_tag(:search) %>-->
+<!--    <%= submit_tag("Search") %>-->
+<!--    <% end %>-->
+<!--  </h2>-->
+<!--  <h2>-->
+<!--    <%= link_to "Advanced Search", new_search_path %>-->
+<!--  </h2>-->
+<!--  <h2>Colleges</h2>-->
+<!--<center><table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Institutions</th>-->
+<!--      <th>Zip code</th>-->
+<!--      <th>Cost of Attendence</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
 
-  <tbody>
-    <% @colleges.each do |college| %>
-      <tr>
-        <td><%= college.coll_name %></td>
-        <td><%= college.zip_code %></td>
-        <td><%= college.cost_att %></td>
-        <td><%= link_to 'Show', college %></td>
+<!--  <tbody>-->
+<!--    <% @colleges.each do |college| %>-->
+<!--      <tr>-->
+<!--        <td><%= college.coll_name %></td>-->
+<!--        <td><%= college.zip_code %></td>-->
+<!--        <td><%= college.cost_att %></td>-->
+<!--        <td><%= link_to 'Show', college %></td>-->
         <!--<td><%= link_to 'Edit', edit_college_path(college) %></td>-->
         <!--<td><%= link_to 'Destroy', college, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</center>
+<!--      </tr>-->
+<!--    <% end %>-->
+<!--  </tbody>-->
+<!--</table>-->
+<!--</center>-->
 
-</div>
+<!--</div>-->
 

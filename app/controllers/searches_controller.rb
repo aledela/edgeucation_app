@@ -17,6 +17,6 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-      params.require(:search).permit(:coll_name, :zip_code, :cost_att)
+      params.require(:search).permit(:zip_code, :cost_att)
   end 
 end
