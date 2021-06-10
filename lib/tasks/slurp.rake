@@ -12,4 +12,22 @@ namespace :slurp do
     s.save
     end
   end
+  
+  task places: :environment do
+    require 'geo_names'
+    criteria = {
+      country_code: 'US',
+      name: 'New York',
+      featureClass: %w[P S],
+      maxRows: 1,
+      style: 'short'
+    }
+    puts result = GeoNames::Search.search(criteria)
+  end
+  
+   task time: :environment do
+    require 'timezone'
+    puts timezone = Timezone.lookup(89, 40)
+  end
+  
 end
