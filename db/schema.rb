@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_202812) do
+ActiveRecord::Schema.define(version: 2021_06_16_231148) do
 
   create_table "colleges", force: :cascade do |t|
     t.string "coll_name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2021_05_20_202812) do
     t.string "cost_att"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "searches", force: :cascade do |t|

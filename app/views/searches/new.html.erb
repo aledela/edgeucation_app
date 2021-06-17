@@ -1,5 +1,7 @@
 <!--<p id="notice"><%= notice %></p>-->
-<h1>Search by:</h1>
+<%= link_to 'Back', '/colleges' %>
+<center>
+<h3>Search by:</h3>
 
 <%= form_with model: @search do |f| %>
 
@@ -11,5 +13,5 @@
 
     <%= f.submit "Search" %>
 <% end %>
-<%= link_to 'Back', '/colleges' %>
+</center>
 </div>
