@@ -9,8 +9,10 @@
     <%= f.text_field :zip_code, size: 10 %><br>
 
     <%= f.label :cost_att, "By Cost of Attendance (Max)"%>
-    <%= f.text_field :cost_att, size: 10 %><br><br>
-
+    <%= f.text_field :cost_att, size: 10 %><br>
+    
+    <%= f.label :subject, "By Major"%>
+    <%= f.select :subject, options_for_select(@subject), include_blank: true %><br><br>
     <%= f.submit "Search" %>
 <% end %>
 </center>

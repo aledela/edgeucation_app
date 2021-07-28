@@ -12,7 +12,47 @@ namespace :slurp do
     s.save
     end
   end
+end
   
+  namespace :slurp do
+  desc "TODO"
+  task filer: :environment do
+    require "csv"
+    majorsfile = "List_Major_Subjects.csv"
+    csv_text1 = File.read(Rails.root.join("lib", "csvs", majorsfile))
+    csv1 = CSV.parse(csv_text1, :headers => true,  :encoding => "ISO-8859-1")
+    csv1.each do |row|
+      majorname = row["Majors List"]
+      major = Major.create(subject: majorname) 
+      filename = majorname + ".csv"
+      csv_text = File.read(Rails.root.join("lib", "csvs", filename))
+      csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
+      csv.each do |row|
+        puts row["Institution"]
+        if(College.exists?(:coll_name => row["Institution"]))
+          college = College.find_by(:coll_name => row["Institution"])
+          college.college_majors.create(major: major)
+        else
+          puts "The institution: #{row["Institution"]} under the major: #{majorname} does not exist in the College model"
+        end
+      end
+    end
+  end
+end
+  
+  namespace :slurp do
+  desc "TODO"
+  task addmodel: :environment do
+    college = College.create(coll_name: 'Grinnell College', zip_code:33614, cost_att: 30000)
+    college2 = College.create(coll_name: 'University of Florida', zip_code:33616, cost_att: 40000)
+    major = Major.create(subject: 'Math')
+    college.college_majors.create(major: major)
+    college2.college_majors.create(major: major)
+    puts college.majors.subject
+  end
+end
+  
+
   
 #     task majors: :environment do
 #     require "csv"
@@ -54,5 +94,4 @@ namespace :slurp do
 #   #   require 'timezone'
 #   #   puts timezone = Timezone.lookup(89, 40)
 #   # end
-  
-# end
+

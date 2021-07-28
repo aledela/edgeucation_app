@@ -7,6 +7,7 @@ class SearchesController < ApplicationController
       @search = Search.new
       @zip_code = College.distinct.pluck(:zip_code)
       @cost_att = College.distinct.pluck(:cost_att)
+      @subject = Major.distinct.pluck(:subject)
   end
 
   def create
@@ -17,6 +18,6 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-      params.require(:search).permit(:zip_code, :cost_att)
+      params.require(:search).permit(:zip_code, :cost_att, :subject)
   end 
 end
