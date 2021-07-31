@@ -16,11 +16,4 @@
   <h2>
     <%= link_to "Advanced Search", new_search_path %>
   </h2>
- 
-  <% majors = Major.all %>
   
- <% majors.each do |major| %>
-    <%= major.subject %>
-  <% end %>
-</div>
-

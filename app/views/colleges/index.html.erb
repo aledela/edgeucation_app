@@ -1,31 +1,14 @@
-<p><%= link_to "Back", colleges_path %></p>
-
 <center>
   <h3>Search Results</h3>
-   <% if @colleges.empty? %>
+  <% if @colleges.empty? %>
     <p>No Institutions matching the filters were found.</p>
   <% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Institutions</th>
-        <th>Zip code</th>
-        <th>Cost of Attendence</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @colleges.each do |college| %>
-        <tr>
-          <td><%= college.coll_name %></td>
-          <td><%= college.zip_code %></td>
-          <td><%= college.cost_att %></td>
-          <td><%= link_to 'Show', college %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
- <% end %> 
+  <div class="grid-container">
+  <% @colleges.each do |college| %>
+    <%= link_to college do %>
+      <div class="grid-item"><%= college.coll_name %></div>
+    <% end  %>
+   <% end %>
+</div>
+<% end %>
 </center>
-

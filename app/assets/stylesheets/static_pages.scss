@@ -1,3 +1,51 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+/*
+
+Beautiful shopping
+• UI (User Interface) made using CSS Grid
+• UX (User Experience) made using GreenSock's FLIP
+
+Details:
+--------------------------------
+Click on any of the *Plant* to move it to the basket and if you didn't like the plant or you choose to selec. st another plant click the plant that is inside the basket and it will be moved back to its original place — All will happen with beautiful and eye-catching animation. I set the basket UI limit to be able to hold four to five (depends on image size) plants, it can take more ...but then the basket UI would look broken, the plants are going to move outside the basket — Just clarifying, *It is on purpose*. I've used the word *click* but that doesn't mean you can't touch/tap the plant, if you're using touch screen devices, it gonna work fine, and yup, it's responsive!
+
+*/
+
+// DEFAULT
+// -----------------------------------
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #white;
+  grid-gap: 30px;
+  padding: 10px;
+   display: flex;
+  flex-flow: wrap;
+}
+
+.grid-item {
+  background-color: #f7f7f7;;
+  border: 1px solid transparent;
+  height: 200px;
+  width: 200px;
+  transition: transform .2s;
+  padding: 30px;
+  font-size: 13px;
+  text-align: center;
+  
+  @media (max-width: 768px) {
+  justify-content: center;
+  }
+  &:hover{
+    	background-color: #f7f7f7;
+  transform: scale(1.1);
+  color : #000;
+  }
+}
+
+a {
+      text-decoration:none;
+      color: #000;
+   }
