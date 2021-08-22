@@ -5,11 +5,13 @@ namespace :slurp do
     csv_text = File.read(Rails.root.join("lib", "csvs", "Inst_by_zip_cost copy.csv"))
     csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
     csv.each do |row|
-    s = College.new
-    s.coll_name = row["Institution"]
-    s.zip_code = row["ZIP"]
-    s.cost_att = row["Cost"]
-    s.save
+      if(!College.exists?(:coll_name => row["Institution"]))
+        s = College.new
+        s.coll_name = row["Institution"]
+        s.zip_code = row["ZIP"]
+        s.cost_att = row["Cost"]
+        s.save
+      end
     end
   end
 end
@@ -28,12 +30,11 @@ end
       csv_text = File.read(Rails.root.join("lib", "csvs", filename))
       csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
       csv.each do |row|
-        puts row["Institution"]
-        if(College.exists?(:coll_name => row["Institution"]))
-          college = College.find_by(:coll_name => row["Institution"])
+        if(College.exists?(:coll_name => row["instnm"]))
+          college = College.find_by(:coll_name => row["instnm"])
           college.college_majors.create(major: major)
         else
-          puts "The institution: #{row["Institution"]} under the major: #{majorname} does not exist in the College model"
+          puts "The institution: #{row["instnm"]} under the major: #{majorname} does not exist in the College model"
         end
       end
     end
@@ -43,13 +44,22 @@ end
   namespace :slurp do
   desc "TODO"
   task addmodel: :environment do
-    college = College.create(coll_name: 'Grinnell College', zip_code:33614, cost_att: 30000)
-    college2 = College.create(coll_name: 'University of Florida', zip_code:33616, cost_att: 40000)
-    major = Major.create(subject: 'Math')
-    college.college_majors.create(major: major)
-    college2.college_majors.create(major: major)
-    puts college.majors.subject
+    require "csv"
+    majorsfile = "Agriculture Operations and Related Sciences.csv"
+    csv_text1 = File.read(Rails.root.join("lib", "csvs", majorsfile))
+    csv1 = CSV.parse(csv_text1, :headers => true,  :encoding => "ISO-8859-1")
+    csv1.each do |row|
+    puts row["instnm"]
   end
+end
+end
+
+  namespace :slurp do
+  desc "TODO"
+  task clearmodels: :environment do
+    College.delete_all
+    Major.delete_all
+end
 end
   
 

@@ -4,16 +4,22 @@
 <h3>Search by:</h3>
 
 <%= form_with model: @search do |f| %>
-
+  <div class="grid-container">
+     <div class="grid-item-search">
     <%= f.label :zip_code, "By Zip Code"%>
     <%= f.text_field :zip_code, size: 10 %><br>
-
+    </div>
+    <div class="grid-item-search">
     <%= f.label :cost_att, "By Cost of Attendance (Max)"%>
     <%= f.text_field :cost_att, size: 10 %><br>
-    
+    </div>
+    <div class="grid-item-search">
     <%= f.label :subject, "By Major"%>
     <%= f.select :subject, options_for_select(@subject), include_blank: true %><br><br>
-    <%= f.submit "Search" %>
+    </div>
+    <%= f.submit "Search", :class => 'grid-item-search-button' %>
+</div>
+
 <% end %>
 </center>
 </div>
