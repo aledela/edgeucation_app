@@ -7,7 +7,7 @@ class CollegesController < ApplicationController
     if params[:search].blank?  
       redirect_to(root_path, alert: "Empty field!") and return  
     else
-      @colleges = College.all.where("coll_name LIKE ?", "%" + params[:search ] + "%")  
+      @colleges = College.all.where("coll_name LIKE ?", "%" + params[:search ] + "%").paginate(:per_page => 12, :page => params[:page])
     end  
   end
 

@@ -1,7 +1,7 @@
 <!--<p id="notice"><%= notice %></p>-->
 <%= link_to 'Back', '/colleges' %>
 <center>
-<h3>Search by:</h3>
+<div class= "h3-container"><h3>SEARCH BY:</h3>
 
 <%= form_with model: @search do |f| %>
   <div class="grid-container">
@@ -17,9 +17,12 @@
     <%= f.label :subject, "By Major"%>
     <%= f.select :subject, options_for_select(@subject), include_blank: true %><br><br>
     </div>
-    <%= f.submit "Search", :class => 'grid-item-search-button' %>
+    <%= button_tag(type: 'submit', class: 'btn-lg grid-item-search-button') do %>
+  <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+<% end %>
 </div>
 
 <% end %>
-</center>
+
 </div>
+</center>

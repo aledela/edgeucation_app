@@ -1,17 +1,21 @@
+<% provide(:title, 'Home') %>
 <p id="notice"><%= notice %></p>
 
-<div class="center jumbotron"> 
-  <h1>Edgeucation</h1>
+<div class="center jumbotron"  style="background-color: #f2f2f2; "> 
+<div class="circle-container"><div class="circle"></div></div>
+  <h1>EDGEUCATION</h1>
   <h2>
   This is the home page for the Edgeucation application.
   </h2>
     <%= form_tag(colleges_path, :method => "get") do %>  
-    <div class="input-group mb-3">  
-      <%= search_field_tag :search, params[:search], placeholder: "Search by College name...", class: "form-control" %>  
-      <div class="input-group-btn">  
-        <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
-      </div>  
+    <div class="my-container">
+    <div class="input-group"> 
+      <%= search_field_tag :search, params[:search], placeholder: "Search by College name...", class: "form-control input-lg" %>  
+      <span class="input-group-btn">  
+        <%= button_tag "", :class => 'btn btn-dark btn-lg glyphicon glyphicon-search',:name => nil%>  
+      </span>  
     </div>  
+     </div>  
     <% end %>
   <h2>
     <%= link_to "Advanced Search", new_search_path %>
