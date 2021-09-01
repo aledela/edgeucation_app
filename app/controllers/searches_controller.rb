@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   def show
-      @search = Search.find(params[:id])
+      @search = Search.find(params[:id]).search_colleges().paginate(:per_page => 20, :page => params[:page])
   end 
 
   def new 

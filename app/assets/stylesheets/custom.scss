@@ -47,7 +47,7 @@ h1 {
   text-align: center;
 }
 h2 {
-  letter-spacing: 1.5px;
+  letter-spacing: 1.0px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
@@ -63,9 +63,14 @@ h3 {
 }
 h5 {
   color: white;
-  font-size: 1.5em;
   font-weight: bold;
   font: 4.0em Barlow, serif;
+}
+h6 {
+  padding-top: 25px;
+  color: #403077;
+  font-weight: bold;
+  font: 1.5em Barlow, serif;
 }
 p {
   font-size: 1.1em;
@@ -226,3 +231,18 @@ footer {
 .my-container {width:80%;margin:0 auto;}
 .btn-dark {background:#536bf6;color:#fff}
 .btn-dark:hover {background:#000;color:#fff}
+
+.back-btn{
+  background-color: white;
+  text-color: #000;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10%;
+  text-decoration: none;
+  &:hover{
+   transform: scale(1.05);
+   text-decoration: none;
+   background:#000;
+   color:#fff
+  }
+}

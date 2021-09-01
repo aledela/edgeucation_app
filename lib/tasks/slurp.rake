@@ -62,8 +62,75 @@ end
 end
 end
   
+namespace :slurp do
+  desc "TODO"
+  task newfiler2: :environment do
+    require "csv"
+    csv_text = csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
+    csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
+    csv.each do |row|
+      if(College.exists?(:coll_name => row["instnm"]))
+        s = College.find_by(:coll_name => row["instnm"])
+        s.zip_code = row["ZIP code"]
+        s.save
+      end
+    end
+  end
+end
 
-  
+namespace :slurp do
+  desc "TODO"
+  task newfiler: :environment do
+    require "csv"
+    csv_text = csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
+    csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
+    headers = csv.headers()
+    csv.each do |row|
+      if(!College.exists?(:coll_name => row["instnm"]))
+        s = College.new
+        s.coll_name = row["instnm"]
+        s.zip_code = row["ZIP code"]
+        s.cost_att = row["Cost of Attendance"]
+        s.save
+      else
+        s = College.find_by(:coll_name => row["instnm"])
+      end
+      for i in 3...headers.size do
+        majorrow = row[headers[i]]
+        majorname = headers[i]
+        if(!majorrow.nil? && majorrow.to_i>=1)
+          if(!Major.exists?(:subject => majorname))
+            major = Major.create(subject: majorname)
+          else
+            major = Major.find_by(:subject => majorname)
+          end
+          s.college_majors.create(major: major)\
+        end
+      end
+    end
+  end
+end
+namespace :slurp do
+  desc "TODO"
+  task newfiler3: :environment do
+    require "csv"
+    csv_text = csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
+    csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
+    headers = csv.headers()
+      csv.each do |row|
+          puts row["instnm"]
+          puts row["ZIP Code"]
+          puts row["Cost of Attendance"]
+          for i in 3...headers.size do
+            if(row[headers[i]].nil?)
+              puts "empty"
+            else
+              puts row[headers[i]]
+            end
+          end
+      end
+  end
+end
 #     task majors: :environment do
 #     require "csv"
 #     # Parsing through data in CSV file for the Major model

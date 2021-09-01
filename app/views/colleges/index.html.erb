@@ -1,8 +1,9 @@
-<%= link_to 'Back', '/colleges' %>
+<% provide(:title, 'Search Results') %>
+<%= link_to 'Back', '/colleges', class: "back-btn" %>
 <center>
 <div class="h5-container"><h5>SEARCH RESULTS:</h5></div>
   <% if @colleges.empty? %>
-    <p>No Institutions matching the filters were found.</p>
+    <p Style = "padding-top: 20px;">No Institutions matching the filters were found.</p>
   <% else %>
   <div class="grid-container">
     <% @colleges.each do |college| %>
@@ -12,8 +13,8 @@
         <p></p>
         <strong><%= college.coll_name %></strong>
         <p></p>
-        <p>Cost of Attendance: <%= college.cost_att %></p>
         <p>Zipcode: <%= college.zip_code %></p>
+        <p>Cost of Attendance: $<%= college.cost_att %></p>
       </div>
     <% end  %>
    <% end %>

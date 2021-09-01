@@ -1,4 +1,6 @@
-<p><%= link_to "Back", new_search_path %></p>
+<% provide(:title, 'Search Results') %>
+
+<%= link_to "Back", new_search_path, class: "back-btn" %>
 
 <!--Scroll Button-->
 <button onclick="topFunction()" id="myBtn" title="Go to top"><span class='glyphicon glyphicon-chevron-up fa-1x'></button>
@@ -28,22 +30,24 @@ function topFunction() {
 
 <center>
  <div class="h5-container"><h5>SEARCH RESULTS:</h5></div>
-  <% if @search.search_colleges.empty? %>
-    <p>No Institutions matching the filters were found.</p>
+  <% if @search.empty? %>
+    <p Style = "padding-top: 20px;">No Institutions matching the filters were found.</p>
   <% else %>
   <div class="grid-container">
-  <% @search.search_colleges.each do |college| %>
+  <% @search.each do |college| %>
     <%= link_to college do %>
       <div class="grid-item">
         <%= image_tag 'DefaultCollegeImg.jpeg', class:'home_image'%>
         <p></p>
         <strong><%= college.coll_name %></strong>
         <p></p>
-        <p>Cost of Attendance: <%= college.cost_att %></p>
         <p>Zipcode: <%= college.zip_code %></p>
+        <p>Cost of Attendance: $<%= college.cost_att %></p>
       </div>
     <% end  %>
    <% end %>
 </div>
 <% end %>
 </center>
+
+<%= will_paginate @search %>
