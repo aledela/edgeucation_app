@@ -5,7 +5,6 @@
 
 
 // universal
-$yellow: rgba(247, 206, 59, 0.6);
 $radius-border: 10px;
 //
 
@@ -20,15 +19,22 @@ h4 {
 }
 
 .grid-container {
+  display: -ms-grid;
   display: grid;
-  justify-content: center;
-  grid-template-columns: auto auto auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
   background-color: #white;
   grid-gap: 30px;
   padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
-  flex-flow: wrap;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
   margin-top: 5%;
   
   a {
@@ -38,7 +44,7 @@ h4 {
     &:hover{
     background-color: transparent;
     text-color: #000;
-   }
+    }
   }
 }
 
@@ -48,19 +54,25 @@ h4 {
   border: 0;
   height: 250px;
   width: 250px;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
   transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
   padding: 30px;
   font-size: 13px;
   text-align: center;
   color : #000;  //Text color 
     
     @media (max-width: 768px) {
-      justify-content: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
     }
     
   &:hover{
     background-color: white;
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
     color : #000;  //Text color 
     text-color : #000
   }
@@ -75,13 +87,18 @@ h4 {
   display:inline-block;
   height: 100px;
   width: auto;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
   transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
   padding: 30px;
   font: 15px Besley, sans-serif;
   text-align: center;
   
   @media (max-width: 768px) {
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   }
 }
   .grid-item-search-button {
@@ -91,7 +108,10 @@ h4 {
   display:inline-block;
   height: auto;
   width: auto;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
   transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
   padding: 30px;
   font-size: 13px;
   text-align: center;
@@ -100,7 +120,8 @@ h4 {
   background: #E1FF5C;
   color : white;
     &:hover{
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
     color : white;  //Text color 
     background: #000;
   }
