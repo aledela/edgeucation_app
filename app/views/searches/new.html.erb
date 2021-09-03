@@ -1,21 +1,29 @@
-<!--<p id="notice"><%= notice %></p>-->
 <% provide(:title, 'New Search') %>
-
 <%= link_to 'Back', '/colleges', class: "back-btn" %>
 
 <center>
-<h3>SEARCH BY:</h3>
+<div class= "h3-container"><h3>SEARCH BY:</h3>
 
 <%= form_with model: @search do |f| %>
+  <div class="grid-container">
+     <div class="grid-item-search">
     <%= f.label :zip_code, "Zip Code*"%>
     <%= f.text_field :zip_code, size: 10 %><br>
-    
+    </div>
+    <div class="grid-item-search">
     <%= f.label :cost_att, "Cost of Attendance (Max)"%>
     <%= f.text_field :cost_att, size: 10 %><br>
-    
+    </div>
+    <div class="grid-item-search">
     <%= f.label :subject, "Major"%>
     <%= f.select :subject, options_for_select(@subject), include_blank: true %><br><br>
-    
-    <%= f.submit "Search" %>
+    </div>
+    <%= button_tag(type: 'submit', class: 'btn-lg grid-item-search-button') do %>
+  <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
 <% end %>
+</div>
+
+<% end %>
+<p>*Zip-Code radius is 50 miles.</p>
+</div>
 </center>
