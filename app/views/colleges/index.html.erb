@@ -1,28 +1,50 @@
+<% provide(:title, 'Search Results') %>
 <p id="notice"><%= notice %></p>
+
+<%= link_to 'Back', '/colleges', class: "back-btn" %>
+<!--Scroll Button-->
+<button onclick="topFunction()" id="myBtn" title="Go to top"><span class='glyphicon glyphicon-chevron-up fa-1x'></button>
+
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
 <center>
-  <h3>Search Result</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Institutions</th>
-        <th>Zip code</th>
-        <th>Cost of Attendence</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @colleges.each do |college| %>
-        <tr>
-          <td><%= college.coll_name %></td>
-          <td><%= college.zip_code %></td>
-          <td><%= college.cost_att %></td>
-          <td><%= link_to 'Show', college %></td>
-          <!--<td><%= link_to 'Edit', edit_college_path(college) %></td>-->
-          <!--<td><%= link_to 'Destroy', college, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="h5-container"><h5>SEARCH RESULTS:</h5></div>
+  <% if @colleges.empty? %>
+    <p Style = "padding-top: 20px;">No Institutions matching the filters were found.</p>
+  <% else %>
+  <div class="grid-container">
+    <% @colleges.each do |college| %>
+    <%= link_to college do %>
+      <div class="grid-item">
+        <%= image_tag 'DefaultCollegeImg.jpeg', class:'home_image'%>
+        <p></p>
+        <strong><%= college.coll_name %></strong>
+        <p></p>
+        <p>Zipcode: <%= college.zip_code %></p>
+        <p>Cost of Attendance: $<%= college.cost_att %></p>
+      </div>
+    <% end  %>
+   <% end %>
+</div>
+<% end %>
 </center>
 <%= will_paginate @colleges %>

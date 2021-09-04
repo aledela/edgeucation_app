@@ -1,9 +1,12 @@
 
+<div class="banner">
+    <p class="h1 display-4"><%= @college.coll_name %></p>
+</div>
 <center>
-<p id="notice"><%= notice %></p>
-
+<div class="flex-container">
+  <div class="flex-left">
 <p>
-  <strong>Institutions:</strong>
+  <strong>Institution:</strong>
   <%= @college.coll_name %>
 </p>
 
@@ -14,13 +17,16 @@
 
 <p>
   <strong>Cost of Attendance:</strong>
-  $<%= @college.cost_att %>
+  <%= @college.cost_att %>
 </p>
-
+</div>
+<div class="flex-right">
 <p>
   <strong>Majors available:</strong>
   <% @college.majors.each do |major| %>
   <p><%= major.subject %></p>
   <% end %>
 </p>
+</div>
+</div>
 </center>

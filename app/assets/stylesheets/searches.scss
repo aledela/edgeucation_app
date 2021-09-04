@@ -19,15 +19,12 @@ h4 {
 }
 
 .grid-container {
-  display: -ms-grid;
-  display: grid;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-grid-columns: auto auto auto;
-      grid-template-columns: auto auto auto;
   background-color: #white;
-  grid-gap: 30px;
+  grid-gap: 35px;
+  grid-row-gap: 45px;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -52,13 +49,13 @@ h4 {
   box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.08), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
   border-radius: $radius-border;
   border: 0;
-  height: 250px;
+  height: 275px;
   width: 250px;
   -webkit-transition: -webkit-transform .2s;
   transition: -webkit-transform .2s;
   transition: transform .2s;
   transition: transform .2s, -webkit-transform .2s;
-  padding: 30px;
+  padding: 25px;
   font-size: 13px;
   text-align: center;
   color : #000;  //Text color 
@@ -137,4 +134,24 @@ h4 {
   left: -10.5%;
   top: -4.5%;
   opacity: 0.7;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+
+.flex-left {
+  width: 50%;
+  height: auto;
+  margin: 5px;
+  padding: 15px;
+}
+
+.flex-right {
+  width: 50%;
+  height: auto;
+  padding: 15px;
+  border-left: 1px solid #e5e2fa;
 }
