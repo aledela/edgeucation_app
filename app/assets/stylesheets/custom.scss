@@ -26,9 +26,8 @@ textarea {
   h1 {
     margin-bottom: 10px;
     color: #7C014A;
-    font-size: 4.0em;
     font-weight: bold;
-    font: 4.0em Hahmlet, serif;
+    
   }
 }
 
@@ -40,6 +39,18 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  font: 3.0em Hahmlet, serif;
+  
+}
+@media screen and (min-width: 320px) {
+  h1 {
+    font-size: calc(16px + 6 * ((150vw - 320px) / 680));
+  }
+}
+@media screen and (min-width: 720px) {
+  h1 {
+    font-size: 50px;
+  }
 }
 h2 {
   letter-spacing: 1.0px;
@@ -117,7 +128,7 @@ footer {
   }
 }
 
-.circle-container{
+.circleIcon-container{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -132,7 +143,7 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.circle {
+.circleIcon {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -195,14 +206,27 @@ footer {
   	background-position: center;
   	background-repeat: no-repeat;
   	position: relative;
+  	text-size-adjust: 70%;
+  	font-size: 70px;
   }
 
   .banner > p {
     color: white;
     text-align: center;
     padding: 110px 0;
-    font-size: 70px;
+    
   }
+  
+  @media screen and (min-width: 320px) {
+  .banner {
+    font-size: calc(16px + 6 * ((50vw - 550px) / 780));
+  }
+}
+@media screen and (min-width: 720px) {
+  .banner {
+    font-size: 15px;
+  }
+}
 
 .h3-container{
   -webkit-box-align: center;
