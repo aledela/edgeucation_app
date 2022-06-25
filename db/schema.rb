@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_230138) do
+ActiveRecord::Schema.define(version: 2022_05_07_025058) do
 
   create_table "college_majors", force: :cascade do |t|
     t.integer "college_id", null: false
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_07_26_230138) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "image"
+    t.string "logo_image"
   end
 
   create_table "majors", force: :cascade do |t|

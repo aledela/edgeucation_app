@@ -1,86 +1,8 @@
-# namespace :slurp do
-#   desc "TODO"
-#   task colleges: :environment do
-#     require "csv"
-#     csv_text = File.read(Rails.root.join("lib", "csvs", "Inst_by_zip_cost copy.csv"))
-#     csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
-#     csv.each do |row|
-#       if(!College.exists?(:coll_name => row["Institution"]))
-#         s = College.new
-#         s.coll_name = row["Institution"]
-#         s.zip_code = row["ZIP"]
-#         s.cost_att = row["Cost"]
-#         s.save
-#       end
-#     end
-#   end
-# end
-  
-#   namespace :slurp do
-#   desc "TODO"
-#   task filer: :environment do
-#     require "csv"
-#     majorsfile = "List_Major_Subjects.csv"
-#     csv_text1 = File.read(Rails.root.join("lib", "csvs", majorsfile))
-#     csv1 = CSV.parse(csv_text1, :headers => true,  :encoding => "ISO-8859-1")
-#     csv1.each do |row|
-#       majorname = row["Majors List"]
-#       major = Major.create(subject: majorname) 
-#       filename = majorname + ".csv"
-#       csv_text = File.read(Rails.root.join("lib", "csvs", filename))
-#       csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
-#       csv.each do |row|
-#         if(College.exists?(:coll_name => row["instnm"]))
-#           college = College.find_by(:coll_name => row["instnm"])
-#           college.college_majors.create(major: major)
-#         else
-#           puts "The institution: #{row["instnm"]} under the major: #{majorname} does not exist in the College model"
-#         end
-#       end
-#     end
-#   end
-# end
-  
-#   namespace :slurp do
-#   desc "TODO"
-#   task addmodel: :environment do
-#     require "csv"
-#     majorsfile = "Agriculture Operations and Related Sciences.csv"
-#     csv_text1 = File.read(Rails.root.join("lib", "csvs", majorsfile))
-#     csv1 = CSV.parse(csv_text1, :headers => true,  :encoding => "ISO-8859-1")
-#     csv1.each do |row|
-#     puts row["instnm"]
-#   end
-# end
-# end
-
-#   namespace :slurp do
-#   desc "TODO"
-#   task clearmodels: :environment do
-#     College.delete_all
-#     Major.delete_all
-# end
-# end
-  
-# namespace :slurp do
-#   desc "TODO"
-#   task newfiler2: :environment do
-#     require "csv"
-#     csv_text = csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
-#     csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
-#     csv.each do |row|
-#       if(College.exists?(:coll_name => row["instnm"]))
-#         s = College.find_by(:coll_name => row["instnm"])
-#         s.zip_code = row["ZIP code"]
-#         s.save
-#       end
-#     end
-#   end
-# end
-
+#CollegeData.csv file contains the complete, most up-to-date data for every college. Other 
+# Latest method to create colleges and add majors to it
 namespace :slurp do
   desc "TODO"
-  task newfiler: :environment do
+  task colMajorfiller: :environment do
     require "csv"
     csv_text = csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
     csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
@@ -104,71 +26,84 @@ namespace :slurp do
           else
             major = Major.find_by(:subject => majorname)
           end
-          s.college_majors.create(major: major)\
+          s.college_majors.create(major: major)
         end
       end
     end
   end
+  
+  # Get one image from the Google Image Search Api (SerpApi.com) to check the API call was successful
+  task imageApi: :environment do
+    require 'google_search_results' 
+    params = {
+      q: "Apple",
+      tbm: "isch",
+      ijn: "0",
+      api_key: "612ad8e6a99ac298be5d784e3049f548b17c2731ca766733a788b100f6b14cf8"
+    }
+    
+    search = GoogleSearch.new(params)
+    image_results_list = search.get_hash[:images_results]
+    puts image_results_list.first(:original)
+  end
+
+# Method to fill all of the image and logo_image attributes for colleges with the default background image and logo image
+  task fillImage: :environment do
+    require "csv"
+    
+    csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
+    csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
+    csv.each do |row|
+      if(College.exists?(:coll_name => row["instnm"]))
+        s = College.find_by(:coll_name => row["instnm"])
+        s.image = "University_College.jpg"
+        s.logo_image = "Default Logo Image.png"
+        s.save
+      end
+    end
+  end
+
+
+# finds background image and logo image for each college and assigns the corresponding urls to college.image and college.logo_image
+  task imageApiCol: :environment do
+    require 'google_search_results' 
+    require "csv"
+    
+    csv_text = File.read(Rails.root.join("lib", "csvs", "TestingFileColleges2.csv"))
+    #The file name should be changed to CollegeData.csv onve testing is completed and the method should be changed to read the file correctly.
+    #The current file is meant for testing purposes. Since the Api version is currently free, only 100 calls a month can be made and thus a 
+    #testing file with less than 100 colleges should be used.
+    csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
+    csv.each do |row|
+      if(College.exists?(:coll_name => row["instnm"]))
+        params = {
+          q: row["instnm"] + " campus",
+          tbm: "isch",
+          ijn: "0",
+          api_key: "612ad8e6a99ac298be5d784e3049f548b17c2731ca766733a788b100f6b14cf8"
+        }
+        paramsLogo = {
+          q: row["instnm"] + " logo",
+          tbm: "isch",
+          tbs: "itp:photos,isz:i",
+          ijn: "0",
+          api_key: "612ad8e6a99ac298be5d784e3049f548b17c2731ca766733a788b100f6b14cf8"
+        }
+        
+        search = GoogleSearch.new(params)
+        image_results_list = search.get_hash[:images_results]
+        imageResult =  image_results_list.first()
+        
+        searchLogo = GoogleSearch.new(paramsLogo)
+        image_results_listLogo = searchLogo.get_hash[:images_results]
+        imageResultLogo =  image_results_listLogo.first()
+        
+        s = College.find_by(:coll_name => row["instnm"])
+        s.image = imageResult[:original]
+        s.logo_image = imageResultLogo[:original]
+        s.save
+      end
+    end
+  end
+
 end
-# namespace :slurp do
-#   desc "TODO"
-#   task newfiler3: :environment do
-#     require "csv"
-#     csv_text = csv_text = File.read(Rails.root.join("lib", "csvs", "CollegeData.csv"))
-#     csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
-#     headers = csv.headers()
-#       csv.each do |row|
-#           puts row["instnm"]
-#           puts row["ZIP Code"]
-#           puts row["Cost of Attendance"]
-#           for i in 3...headers.size do
-#             if(row[headers[i]].nil?)
-#               puts "empty"
-#             else
-#               puts row[headers[i]]
-#             end
-#           end
-#       end
-#   end
-# end
-#     task majors: :environment do
-#     require "csv"
-#     # Parsing through data in CSV file for the Major model
-# 	  csv_text_majors = File.read(Rails.root.join("lib", "csvs", "majors.csv"))
-#     csv_majors = CSV.parse(csv_text_majors, :headers => true,  :encoding => "ISO-8859-1")
-#     csv_majors.each do |row2|
-#       m = Major.new
-#       m.name = row["Major"]
-#       m.description = row["Description"]
-#       m.save
-#     end
-#   end
- 
-#     task college_major: :environment do
-#     require "csv"
-#     # Parsing through data in CSV file for the Major model
-#     @majors.each do |major|
-#   	  csv_text = File.read(Rails.root.join("lib", "csvs", "major.name.csv"))
-#       csv = CSV.parse(csv_text, :headers => true,  :encoding => "ISO-8859-1")
-#       csv.each do |row|
-#         colleges.name = row["Institution"]
-#         major.college_majors.create(college: colleges.name)
-#       end
-#     end
-#   end 
-  
-  
-  
-#   major.college_majors.create(client: client)
-  
-#   task places: :environment do
-# results = Geocoder.search("Paris")
-
-#     puts results.first.coordinates
-#   end
-  
-#   # task time: :environment do
-#   #   require 'timezone'
-#   #   puts timezone = Timezone.lookup(89, 40)
-#   # end
-

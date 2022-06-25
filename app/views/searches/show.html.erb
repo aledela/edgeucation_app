@@ -37,7 +37,7 @@ function topFunction() {
   <% @search.each do |college| %>
     <%= link_to college do %>
       <div class="grid-item">
-        <%= image_tag 'DefaultCollegeImg.jpeg', class:'home_image'%>
+        <%= image_tag college.logo_image, class:'home_image' %>
         <p></p>
         <strong><%= college.coll_name %></strong>
         <p></p>

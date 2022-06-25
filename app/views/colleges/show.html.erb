@@ -1,14 +1,11 @@
 <% provide(:title, 'College') %>
-<div class="banner">
-    <p class="h1 display-4"><%= @college.coll_name %></p>
-</div>
+<!--<div class="banner">-->
+    <%= image_tag @college.image , class:'banner' %>
+    <p class="bannerText"><%= @college.coll_name %></p>
+<!--</div>-->
 <center>
 <div class="flex-container">
   <div class="flex-left">
-<p>
-  <strong>Institution:</strong>
-  <%= @college.coll_name %>
-</p>
 
 <p>
   <strong>Zip code:</strong>
