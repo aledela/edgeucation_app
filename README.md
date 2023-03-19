@@ -1,5 +1,6 @@
 # README
 ##Edgeucation
+This is the initial version of the Edgucation app to get new contributors started on the project.
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
